@@ -6,7 +6,7 @@ def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
-setup(name='sparsity_pattern',
+setup(name='sparsity-pattern',
       version='0.1.0',
       description=(
           "Generate different types of sparsity pattern for sparse matrices."
@@ -17,7 +17,7 @@ setup(name='sparsity_pattern',
       author='Ulf Hamster',
       author_email='554c46@gmail.com',
       license='MIT',
-      packages=['sparsity-pattern'],
+      packages=['sparsity_pattern'],
       install_requires=[
           'setuptools>=40.0.0'],
       python_requires='>=3.6',
