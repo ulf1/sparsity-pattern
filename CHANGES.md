@@ -1,3 +1,7 @@
+# 0.2.0 / 2020-03-12
+
+  * code reorganized
+  * `utils.get_matrix_dims_circle` to find matrix dimension and offset hyperparameters for a given number of matrix elements.
 
 # 0.1.0 / 2020-03-08
 
