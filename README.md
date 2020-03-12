@@ -48,7 +48,7 @@ mat = torch.sparse_coo_tensor(
 print(mat.to_dense())
 ```
 
-Check the [examples](http://github.com/ulf1/sparsity-pattern/examples) folder for more notebooks.
+Check the [examples](https://github.com/ulf1/sparsity-pattern/tree/master/examples) folder for more notebooks.
 
 
 ## Appendix
