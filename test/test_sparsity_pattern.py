@@ -62,7 +62,13 @@ def test6():
     assert sp == target
 
 
-def test7():
+def test7a():
+    sp = sparsity_pattern.get('block', 3, 2)
+    target = [(0, 0), (0, 1), (1, 0), (1, 1), (2, 2)]
+    assert sp == target
+
+
+def test7b():
     sp = sparsity_pattern.get('block', 3, [2, 2])
     target = [(0, 0), (0, 1), (1, 0), (1, 1), (2, 2)]
     assert sp == target
