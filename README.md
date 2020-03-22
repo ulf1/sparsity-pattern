@@ -48,6 +48,22 @@ mat = torch.sparse_coo_tensor(
 print(mat.to_dense())
 ```
 
+The `triu` pattern for scipy
+
+```
+import sparsity_pattern
+import scipy.sparse
+import numpy as np
+
+n, k = 4, -1
+idx = sparsity_pattern.get('triu', n, k)
+idx_rows, idx_cols = np.array(idx)[:, 0], np.array(idx)[:, 1]
+mat = scipy.sparse.lil_matrix((n, n), dtype=np.int64)
+mat[idx_rows, idx_cols] = range(1, len(idx)+1)
+
+print(mat.todense())
+```
+
 Check the [examples](https://github.com/ulf1/sparsity-pattern/tree/master/examples) folder for more notebooks.
 
 

@@ -1,3 +1,8 @@
+# 0.3.0 / 2020-03-22
+
+  * triu and tril sparsity pattern added
+  * scipy example for README
+
 # 0.2.0 / 2020-03-12
 
   * code reorganized
