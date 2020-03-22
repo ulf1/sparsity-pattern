@@ -93,7 +93,17 @@ def blockflex(n: int, block_sizes=List[int]) -> List[List[int]]:
 
 
 def circledet(n: int, offsets: List[int] = [1]) -> List[List[int]]:
-    """"""
+    """Circular shift the main diagonal left/right (or up/down) by an offset
+
+    Args:
+        n (int): Dimension of quadratic matrix
+        offsets (List[int], default=[1]): Offset to shift a main diagonal
+            left/right (up/down).
+
+    Returns:
+        List[List[int]]: Sparsity pattern as list of row/column-pairs
+            or -keys (dictionary of keys format)
+    """
     arr = []
     off = set(offsets)
     off = [k for k in off if k < n]
