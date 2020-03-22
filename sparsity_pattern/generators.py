@@ -19,6 +19,10 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
         arr = blockflex(*args, **kwargs)
     elif sp in ("circle"):
         arr = circledet(*args, **kwargs)
+    elif sp in ("tril"):
+        arr = tril(*args, **kwargs)
+    elif sp in ("triu"):
+        arr = triu(*args, **kwargs)
     # remove duplicates
     arr = list(set(arr))
     # sort by row, col indices
@@ -97,3 +101,35 @@ def circledet(n: int, offsets: List[int] = [1]) -> List[List[int]]:
         arr.extend(
             [(i, (i - k) if (i - k) >= 0 else (n + i - k)) for i in range(n)])
     return arr
+
+
+def tril(n: int, k: int = 0) -> List[List[int]]:
+    """Lower triangle matrix
+
+    Args:
+        n (int): Dimension of quadratic matrix
+        k (int, default=0): All elements exists below the main diagonal (k<0)
+            or above the main diagonal (k>0). For k=0 the main diagonal
+            elements are 1s.
+
+    Returns:
+        List[List[int]]: Sparsity pattern as list of row/column-pairs
+            or -keys (dictionary of keys format)
+    """
+    return [(i, j) for j in range(n) for i in range(max(0, j - k), n)]
+
+
+def triu(n: int, k: int = 0) -> List[List[int]]:
+    """Upper triangle matrix
+
+    Args:
+        n (int): Dimension of quadratic matrix
+        k (int, default=0): All elements exist above the main diagonal (k<0)
+            or below the main diagonal (k>0). For k=0 the main diagonal
+            elements are 1s.
+
+    Returns:
+        List[List[int]]: Sparsity pattern as list of row/column-pairs
+            or -keys (dictionary of keys format)
+    """
+    return [(i, j) for i in range(n) for j in range(max(0, i - k), n)]
