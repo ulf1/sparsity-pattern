@@ -62,7 +62,15 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
 
 
 def diag(n: int) -> List[List[int]]:
-    """Diagonal Matrix. Req.: Quadratic Matrix"""
+    """Diagonal Matrix
+
+    Args:
+        n (int): Dimension of the quadratic matrix
+
+    Returns:
+        List[List[int]]: Sparsity pattern as list of row/column-pairs
+            or -keys (dictionary of keys format)
+    """
     arr = [(i, i) for i in range(n)]
     return arr
 
