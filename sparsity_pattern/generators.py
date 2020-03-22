@@ -3,6 +3,37 @@ from typing import List
 
 
 def get(sp: str, *args, **kwargs) -> List[List[int]]:
+    """Wrapper function for sparsity patterns
+
+    Args:
+        sp (str): type of sparsity pattern, e.g.,
+            - 'diag' -- Diagonal matrix
+            - 'dense' -- Dense matrix
+            - 'nodiag' -- Dense without main diagonal elements
+            - 'block' -- Block matrix
+            - 'circle' -- Circular shift the main diagonal
+            - 'tril' -- Lower triangle matrix
+            - 'triu' -- Upper triangle matrix
+        args: depends on sp
+        kwargs: depends on sp
+
+    Returns:
+        List[List[int]]: Sparsity pattern as list of row/column-pairs
+            or -keys (dictionary of keys format)
+
+    Example:
+        idx = sparsity_pattern.get('diag', n=5)
+        idx = sparsity_pattern.get('dense', n=5)
+        idx = sparsity_pattern.get('dense', r=3, c=5)
+        idx = sparsity_pattern.get('nodiag', n=5)
+        idx = sparsity_pattern.get('nodiag', r=3, c=5)
+        idx = sparsity_pattern.get('block', n=5, block_sizes=2)
+        idx = sparsity_pattern.get('block', n=5, block_sizes=[2, 3])
+        idx = sparsity_pattern.get('circle', n=5, offsets=1)
+        idx = sparsity_pattern.get('circle', n=5, offsets=[1, 2])
+        idx = sparsity_pattern.get('tril', n=5, k=-1)
+        idx = sparsity_pattern.get('triu', n=5, k=-1)
+    """
     if sp in ("diag"):
         arr = diag(*args, **kwargs)
     elif sp in ("dense"):
@@ -68,7 +99,18 @@ def nodiag_pythonic(r: int, c: int = None) -> List[List[int]]:
 
 
 def blockflex(n: int, block_sizes=List[int]) -> List[List[int]]:
-    """Block Diagonal Matrix with different sized blocks"""
+    """Block Diagonal Matrix with different sized blocks
+
+    Args:
+        n (int): Dimension of quadratic matrix
+        block_sizes (List[int], int): The block size. Different
+            block sizes as list possible that will be repeated,
+            e.g., `block_sizes=[2,3]`
+
+    Returns:
+        List[List[int]]: Sparsity pattern as list of row/column-pairs
+            or -keys (dictionary of keys format)
+    """
     if isinstance(block_sizes, int):
         block_sizes = [block_sizes]
     arr = []
@@ -104,6 +146,8 @@ def circledet(n: int, offsets: List[int] = [1]) -> List[List[int]]:
         List[List[int]]: Sparsity pattern as list of row/column-pairs
             or -keys (dictionary of keys format)
     """
+    if isinstance(offsets, int):
+        offsets = [offsets]
     arr = []
     off = set(offsets)
     off = [k for k in off if k < n]

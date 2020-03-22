@@ -68,7 +68,13 @@ def test7():
     assert sp == target
 
 
-def test8():
+def test8a():
+    sp = sparsity_pattern.get('circle', 5, 1)
+    target = [(0, 4), (1, 0), (2, 1), (3, 2), (4, 3)]
+    assert sp == target
+
+
+def test8b():
     sp = sparsity_pattern.get('circle', 5, [1, 1])
     target = [(0, 4), (1, 0), (2, 1), (3, 2), (4, 3)]
     assert sp == target
