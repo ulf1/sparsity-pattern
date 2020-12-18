@@ -1,0 +1,14 @@
+{
+  "creators": [{
+    "name": "Ulf Hamster",
+    "orcid": "0000-0002-0440-4868"
+  }],
+  "title": "sparsity-pattern: Generate different types of sparsity pattern for sparse matrices.",
+  "description": "The packages offers the following types of sparsity pattern. (1) 'diag', a diagonal matrix, (2) 'nodiag', a dense matrix without main diagonal elements, (3) 'block', a block matrix, (4) 'circle', i.e. circular shift of the main diagonal, (5) 'tril' and 'triu', i.e. the lower or upper triangle matrix; The sparsity patter is representated as index pairs, and demo examples are provided how to use it with other python APIs (e.g. scipy.sparse.lil_matrix, torch.sparse_coo_tensor, or tensorflow.sparse.SparseTensor)",
+  "license": "Apache-2.0",
+  "upload_type": "software",
+  "keywords": [
+    "sparsity-pattern",
+    "sparse-matrix"
+  ]
+}
