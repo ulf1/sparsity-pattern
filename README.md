@@ -1,4 +1,3 @@
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ulf1/sparsity-pattern/master?urlpath=lab)
 
 # sparsity-pattern
 Generate different types of sparsity pattern for sparse matrices.
@@ -16,7 +15,7 @@ pip install git+ssh://git@github.com/ulf1/sparsity-pattern.git
 ## Usage
 The `block`-diagonal pattern for tensorflow
 
-```
+```py
 import sparsity_pattern
 import tensorflow as tf
 
@@ -33,7 +32,7 @@ print(tf.sparse.to_dense(mat))
 
 The `circle` pattern for pytorch
 
-```
+```py
 import sparsity_pattern
 import torch
 
@@ -50,7 +49,7 @@ print(mat.to_dense())
 
 The `triu` pattern for scipy
 
-```
+```py
 import sparsity_pattern
 import scipy.sparse
 import numpy as np
@@ -75,10 +74,14 @@ Check the [examples](https://github.com/ulf1/sparsity-pattern/tree/master/exampl
 python3.6 -m venv .venv
 source .venv/bin/activate
 pip3 install --upgrade pip
-pip3 install -r requirements.txt
+pip3 install -r requirements-dev.txt
+pip3 install -r requirements-demo.txt
 ```
 
 (If your git repo is stored in a folder with whitespaces, then don't use the subfolder `.venv`. Use an absolute path without whitespaces.)
+
+
+
 
 ### Python commands
 
