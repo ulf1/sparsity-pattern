@@ -11,8 +11,8 @@ setup(name='sparsity-pattern',
       description=(
           "Generate different types of sparsity pattern for sparse matrices."
       ),
-      long_description=read('README.md'),
-      long_description_content_type='text/markdown',
+      # long_description=read('README.md'),
+      # long_description_content_type='text/markdown',
       url='http://github.com/ulf1/sparsity-pattern',
       author='Ulf Hamster',
       author_email='554c46@gmail.com',
