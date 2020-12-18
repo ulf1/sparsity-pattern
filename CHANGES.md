@@ -1,3 +1,7 @@
+# 0.4.0 / 2020-12-18
+
+  * License changed to Apache-2
+
 # 0.3.0 / 2020-03-22
 
   * triu and tril sparsity pattern added
