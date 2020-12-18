@@ -1,4 +1,6 @@
 [![PyPI version](https://badge.fury.io/py/sparsity-pattern.svg)](https://badge.fury.io/py/sparsity-pattern)
+[![DOI](https://zenodo.org/badge/245850728.svg)](https://zenodo.org/badge/latestdoi/245850728)
+
 
 # sparsity-pattern
 Generate different types of sparsity pattern for sparse matrices.
@@ -103,6 +105,11 @@ rm -r .venv
 
 ### Support
 Please [open an issue](https://github.com/ulf1/sparsity-pattern/issues/new) for support.
+
+
+### License and citation
+This software is licensed under Apache License 2.0 and archived on [Zenodo](https://doi.org/10.5281/zenodo.4357290).
+If you would like to cite the software, please use this DOI: [10.5281/zenodo.4357290](https://doi.org/10.5281/zenodo.4357290).
 
 
 ### Contributing
