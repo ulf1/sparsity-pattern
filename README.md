@@ -1,3 +1,4 @@
+[![PyPI version](https://badge.fury.io/py/sparsity-pattern.svg)](https://badge.fury.io/py/sparsity-pattern)
 
 # sparsity-pattern
 Generate different types of sparsity pattern for sparse matrices.
