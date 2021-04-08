@@ -1,9 +1,5 @@
 from setuptools import setup
-import os
-
-
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+import pypandoc
 
 
 setup(name='sparsity-pattern',
@@ -11,8 +7,7 @@ setup(name='sparsity-pattern',
       description=(
           "Generate different types of sparsity pattern for sparse matrices."
       ),
-      # long_description=read('README.md'),
-      # long_description_content_type='text/markdown',
+      long_description=pypandoc.convert('README.md', 'rst'),
       url='http://github.com/ulf1/sparsity-pattern',
       author='Ulf Hamster',
       author_email='554c46@gmail.com',
