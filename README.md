@@ -1,5 +1,6 @@
 [![PyPI version](https://badge.fury.io/py/sparsity-pattern.svg)](https://badge.fury.io/py/sparsity-pattern)
 [![DOI](https://zenodo.org/badge/245850728.svg)](https://zenodo.org/badge/latestdoi/245850728)
+[![sparsity-pattern](https://snyk.io/advisor/python/sparsity-pattern/badge.svg)](https://snyk.io/advisor/python/sparsity-pattern)
 
 
 # sparsity-pattern
