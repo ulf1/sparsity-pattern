@@ -1,7 +1,9 @@
 [![PyPI version](https://badge.fury.io/py/sparsity-pattern.svg)](https://badge.fury.io/py/sparsity-pattern)
 [![DOI](https://zenodo.org/badge/245850728.svg)](https://zenodo.org/badge/latestdoi/245850728)
 [![sparsity-pattern](https://snyk.io/advisor/python/sparsity-pattern/badge.svg)](https://snyk.io/advisor/python/sparsity-pattern)
-
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/ulf1/sparsity-pattern.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ulf1/sparsity-pattern/alerts/)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/ulf1/sparsity-pattern.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ulf1/sparsity-pattern/context:python)
+[![deepcode](https://www.deepcode.ai/api/gh/badge?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybTEiOiJnaCIsIm93bmVyMSI6InVsZjEiLCJyZXBvMSI6InNwYXJzaXR5LXBhdHRlcm4iLCJpbmNsdWRlTGludCI6ZmFsc2UsImF1dGhvcklkIjoyOTQ1MiwiaWF0IjoxNjE5NTQwNDY4fQ.84-ii4Nz_CiGiojJTDIenWenL4vwVLBB9sapz9soHyA)](https://www.deepcode.ai/app/gh/ulf1/sparsity-pattern/_/dashboard?utm_content=gh%2Fulf1%2Fsparsity-pattern)
 
 # sparsity-pattern
 Generate different types of sparsity pattern for sparse matrices.
@@ -92,7 +94,14 @@ pip3 install -r requirements-demo.txt
 * Jupyter for the examples: `jupyter lab`
 * Check syntax: `flake8 --ignore=F401 --exclude=$(grep -v '^#' .gitignore | xargs | sed -e 's/ /,/g')`
 * Run Unit Tests: `pytest`
-* Upload to PyPi with twine: `python setup.py sdist && twine upload -r pypi dist/*`
+
+Publish
+
+```sh
+pandoc README.md --from markdown --to rst -s -o README.rst
+python setup.py sdist 
+twine upload -r pypi dist/*
+```
 
 ### Clean up 
 

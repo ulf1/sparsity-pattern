@@ -35,15 +35,15 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
         idx = sparsity_pattern.get('triu', n=5, k=-1)
     """
     if sp in ("diag"):
-        arr = diag(*args, **kwargs)
+        arr = diag(*args)
     elif sp in ("dense"):
         if (len(args) + len(kwargs)) == 1:
-            arr = dense_quadratic(*args, **kwargs)
+            arr = dense_quadratic(*args)
         else:
             arr = dense_pythonic(*args, **kwargs)
     elif sp in ("nodiag"):
         if (len(args) + len(kwargs)) == 1:
-            arr = nodiag_quadratic(*args, **kwargs)
+            arr = nodiag_quadratic(*args)
         else:
             arr = nodiag_pythonic(*args, **kwargs)
     elif sp in ("block"):
