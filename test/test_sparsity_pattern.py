@@ -122,3 +122,7 @@ def test10c():
         sp = sparsity_pattern.get('triu', n, n)
         sp2 = sparsity_pattern.get('dense', n)
         assert sp == sp2
+
+def test11():
+    sp = sparsity_pattern.get('random', r=3, c=5, pct=0.5)
+    assert len(sp) == max(5, int(0.5 * 15))

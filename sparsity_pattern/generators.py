@@ -1,5 +1,6 @@
 from itertools import combinations
 from typing import List
+from random import shuffle
 
 
 def get(sp: str, *args, **kwargs) -> List[List[int]]:
@@ -14,6 +15,7 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
             - 'circle' -- Circular shift the main diagonal
             - 'tril' -- Lower triangle matrix
             - 'triu' -- Upper triangle matrix
+            - 'random' -- Random matrix
         args: depends on sp
         kwargs: depends on sp
 
@@ -33,6 +35,7 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
         idx = sparsity_pattern.get('circle', n=5, offsets=[1, 2])
         idx = sparsity_pattern.get('tril', n=5, k=-1)
         idx = sparsity_pattern.get('triu', n=5, k=-1)
+        idx = sparsity_pattern.get('random', r=3, c=5, pct=0.3)
     """
     if sp in ("diag"):
         arr = diag(*args)
@@ -54,6 +57,8 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
         arr = tril(*args, **kwargs)
     elif sp in ("triu"):
         arr = triu(*args, **kwargs)
+    elif sp in ("random"):
+        arr = random(*args, **kwargs)
     # remove duplicates
     arr = list(set(arr))
     # sort by row, col indices
@@ -195,3 +200,17 @@ def triu(n: int, k: int = 0) -> List[List[int]]:
             or -keys (dictionary of keys format)
     """
     return [(i, j) for i in range(n) for j in range(max(0, i - k), n)]
+
+
+def random(r: int, c: int = None, pct: float = 0.5) -> List[List[int]]:
+    """Random sparsity with each row & col. having at least 1 entry."""
+    if c is None:
+        c = r
+    num = max(max(r, c), int(pct * (r * c)))
+    iidx, jidx = list(range(num)), list(range(num))
+    shuffle(iidx)
+    shuffle(jidx)
+    iidx = [i % r for i in iidx]
+    jidx = [j % c for j in jidx]
+    arr = [(i, j) for i, j in zip(*(iidx, jidx))]
+    return arr
