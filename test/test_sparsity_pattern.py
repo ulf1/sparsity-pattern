@@ -1,4 +1,5 @@
 import sparsity_pattern
+import random
 
 
 def test1():
@@ -123,6 +124,14 @@ def test10c():
         sp2 = sparsity_pattern.get('dense', n)
         assert sp == sp2
 
+
 def test11():
+    random.seed(23)
     sp = sparsity_pattern.get('random', r=3, c=5, pct=0.5)
     assert len(sp) == max(5, int(0.5 * 15))
+
+
+def test12():
+    random.seed(23)
+    sp = sparsity_pattern.get('random2', n=5, pct=0.75)
+    assert len([1 for i, j in sp if i == j]) == 0

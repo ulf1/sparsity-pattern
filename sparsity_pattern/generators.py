@@ -36,6 +36,7 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
         idx = sparsity_pattern.get('tril', n=5, k=-1)
         idx = sparsity_pattern.get('triu', n=5, k=-1)
         idx = sparsity_pattern.get('random', r=3, c=5, pct=0.3)
+        idx = sparsity_pattern.get('random2', n=5, pct=0.3)
     """
     if sp in ("diag"):
         arr = diag(*args)
@@ -59,6 +60,8 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
         arr = triu(*args, **kwargs)
     elif sp in ("random"):
         arr = random(*args, **kwargs)
+    elif sp in ("random2"):
+        arr = random_nodiag_quadratic(*args, **kwargs)
     # remove duplicates
     arr = list(set(arr))
     # sort by row, col indices
@@ -214,3 +217,20 @@ def random(r: int, c: int = None, pct: float = 0.5) -> List[List[int]]:
     jidx = [j % c for j in jidx]
     arr = [(i, j) for i, j in zip(*(iidx, jidx))]
     return arr
+
+
+def random_nodiag_quadratic(n: int, pct: float = 0.5) -> List[List[int]]:
+    """Random sparsity with each row & col. having at least 1 entry
+        and no diagonal elements.
+    """
+    num = max(n, int(pct * (n * n)))
+    arr = []
+    for _ in range(int(pct * n) + 1):
+        idx = list(range(n))
+        shuffle(idx)
+        arr.append((idx[0], idx[-1]))
+        for k in range(1, n):
+            i = idx[k]
+            j = idx[k - 1]
+            arr.append((i, j))
+    return arr[:num]
