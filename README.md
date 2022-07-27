@@ -77,7 +77,7 @@ Check the [examples](https://github.com/ulf1/sparsity-pattern/tree/master/exampl
 ### Install a virtual environment
 
 ```
-python3.7 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip3 install --upgrade pip
 pip3 install -r requirements-dev.txt
