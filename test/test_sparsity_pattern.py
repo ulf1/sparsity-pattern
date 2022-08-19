@@ -131,7 +131,19 @@ def test11():
     assert len(sp) == max(5, int(0.5 * 15))
 
 
+def test11b():
+    sp1 = sparsity_pattern.get('random', r=3, c=5, pct=0.5, random_state=42)
+    sp2 = sparsity_pattern.get('random', r=3, c=5, pct=0.5, random_state=42)
+    assert sp1 == sp2
+
+
 def test12():
     random.seed(23)
     sp = sparsity_pattern.get('random2', n=5, pct=0.75)
     assert len([1 for i, j in sp if i == j]) == 0
+
+
+def test12b():
+    sp1 = sparsity_pattern.get('random2', n=5, pct=0.75, random_state=42)
+    sp2 = sparsity_pattern.get('random2', n=5, pct=0.75, random_state=42)
+    assert sp1 == sp2

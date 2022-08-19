@@ -1,3 +1,7 @@
+# 0.4.5 / 2022-08-19
+
+  * set random seed for reproducibility
+
 # 0.4.2 / 2020-04-23
 
   * Test multiple python versions

@@ -1,6 +1,6 @@
 from itertools import combinations
-from typing import List
-from random import shuffle
+from typing import List, Optional
+import random
 
 
 def get(sp: str, *args, **kwargs) -> List[List[int]]:
@@ -35,8 +35,8 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
         idx = sparsity_pattern.get('circle', n=5, offsets=[1, 2])
         idx = sparsity_pattern.get('tril', n=5, k=-1)
         idx = sparsity_pattern.get('triu', n=5, k=-1)
-        idx = sparsity_pattern.get('random', r=3, c=5, pct=0.3)
-        idx = sparsity_pattern.get('random2', n=5, pct=0.3)
+        idx = sparsity_pattern.get('random', r=3, c=5, pct=0.3, random_state=0)
+        idx = sparsity_pattern.get('random2', n=5, pct=0.3, random_state=0)
     """
     if sp in ("diag"):
         arr = diag(*args)
@@ -59,7 +59,7 @@ def get(sp: str, *args, **kwargs) -> List[List[int]]:
     elif sp in ("triu"):
         arr = triu(*args, **kwargs)
     elif sp in ("random"):
-        arr = random(*args, **kwargs)
+        arr = random_pattern(*args, **kwargs)
     elif sp in ("random2"):
         arr = random_nodiag_quadratic(*args, **kwargs)
     # remove duplicates
@@ -205,29 +205,41 @@ def triu(n: int, k: int = 0) -> List[List[int]]:
     return [(i, j) for i in range(n) for j in range(max(0, i - k), n)]
 
 
-def random(r: int, c: int = None, pct: float = 0.5) -> List[List[int]]:
+def random_pattern(r: int,
+                   c: Optional[int] = None,
+                   pct: Optional[float] = 0.5,
+                   random_state: Optional[int] = None
+                   ) -> List[List[int]]:
     """Random sparsity with each row & col. having at least 1 entry."""
+    if random_state is not None:
+        random.seed(random_state)
     if c is None:
         c = r
     num = max(max(r, c), int(pct * (r * c)))
     iidx, jidx = list(range(num)), list(range(num))
-    shuffle(iidx)
-    shuffle(jidx)
+    random.shuffle(iidx)
+    random.shuffle(jidx)
     iidx = [i % r for i in iidx]
     jidx = [j % c for j in jidx]
     arr = [(i, j) for i, j in zip(*(iidx, jidx))]
     return arr
 
 
-def random_nodiag_quadratic(n: int, pct: float = 0.5) -> List[List[int]]:
+def random_nodiag_quadratic(n: int,
+                            pct: Optional[float] = 0.5,
+                            random_state: Optional[int] = None
+                            ) -> List[List[int]]:
     """Random sparsity with each row & col. having at least 1 entry
         and no diagonal elements.
     """
+    if random_state is not None:
+        random.seed(random_state)
     num = max(n, int(pct * (n * n)))
     arr = []
     for _ in range(int(pct * n) + 1):
+
         idx = list(range(n))
-        shuffle(idx)
+        random.shuffle(idx)
         arr.append((idx[0], idx[-1]))
         for k in range(1, n):
             i = idx[k]
