@@ -3,4 +3,5 @@ jupyterlab==1.*
 scipy==1.*
 torch==1.*
 tensorflow==2.*
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
 wheel>=0.38.0 # not directly required, pinned by Snyk to avoid a vulnerability
